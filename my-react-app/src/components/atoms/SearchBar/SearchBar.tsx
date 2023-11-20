@@ -1,18 +1,25 @@
-import React from "react";
-import { Card } from "../../atoms/Cards/card";
+import React, { useState, ChangeEvent } from 'react';
 
-interface CardMovieProps {
-  id: number;
-  title: string;
-  imageSrc: string;
+interface SearchBarProps {
+  onSearch: (query: string) => void;
 }
 
-export const CardMovie: React.FC<CardMovieProps> = ({ title, imageSrc,id }) => {
+export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const [searchValue, setSearchValue] = useState<string>('');
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const query = event.target.value;
+    setSearchValue(query);
+    onSearch(query);
+  };
+
   return (
-    <Card classes='shadow-lg h-auto transition ease-in-out rounded-md hover:scale-105 hover:cursor-pointer hover:shadow-2xl'>
-      <a href={`/movie/${id}`}>
-        <img src={imageSrc} alt={title} className="rounded-md object-cover" />
-      </a>
-    </Card>
+    <input
+      type='text'
+      placeholder='🔎 Search for movie'
+      className='pl-4 rounded-full min-w-full sm:min-w-[20rem] dark:bg-gray-700'
+      value={searchValue}
+      onChange={handleChange}
+    />
   );
 };
