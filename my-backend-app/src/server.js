@@ -83,3 +83,11 @@ console.log(newData)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Connected : http://localhost:${PORT}`));
+
+
+// Define a route for the root URL ("/")
+app.get('/', (req, res) => {
+  // Redirect to the /login page
+  res.redirect('/login');
+});
+
