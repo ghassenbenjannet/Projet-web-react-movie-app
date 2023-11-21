@@ -7,6 +7,7 @@ interface MovieCreditsProps {
 }
 
 const MovieCredits: React.FC<MovieCreditsProps> = ({ credits }) => {
+  console.log(credits);
   return (
     <div>
       <h3 className="text-xl text-white font-semibold mb-2">Credits</h3>
