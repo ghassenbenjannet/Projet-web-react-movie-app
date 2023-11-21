@@ -6,4 +6,7 @@ export default {
   optimizeDeps: {
     include: ['react', 'react-dom'],
   },
+  server:{
+    port: 80,
+  },
 };
