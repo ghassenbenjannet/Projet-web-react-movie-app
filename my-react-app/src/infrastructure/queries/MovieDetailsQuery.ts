@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { MOVIE_DETAIL_ID_ENDPOINT } from '../../infrastructure/config/Endpoints';
+import { MOVIE_DETAIL_ID_ENDPOINT } from '../config/Endpoints';
 import { tmdb_api_acces } from '../config/TMDBConfig';
 
 export const useFetchMovieDetailQuery = (id: number) => {
