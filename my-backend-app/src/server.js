@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const authRoutes = require('./Routes/authRoutes');
 const frontManagementRoutes = require('./Routes/frontManagementRoutes');
-const sharedDataPath = path.resolve(__dirname, '../../shared-data.json'); // Modifié le chemin ici
+const sharedDataPath = path.resolve(__dirname, '../../shared-data.json');
 const cors = require('cors'); 
 const app = express();
 app.use(express.json());
@@ -27,9 +27,9 @@ app.use(frontManagementRoutes);
 
 app.post('/api/toggle-maintenance', (req, res) => {
   try {
-    const sharedData = require(sharedDataPath); // Utilisez le chemin résolu
+    const sharedData = require(sharedDataPath);
     sharedData.maintenance = !sharedData.maintenance;
-    fs.writeFileSync(sharedDataPath, JSON.stringify(sharedData, null, 2)); // Utilisez le chemin résolu
+    fs.writeFileSync(sharedDataPath, JSON.stringify(sharedData, null, 2));
     res.json({ maintenance: sharedData.maintenance });
   } catch (error) {
     console.error('Erreur lors du basculement du mode maintenance :', error);
@@ -47,16 +47,13 @@ app.get('/api/shared-data', (req, res) => {
   }
 });
 
-// API pour modifier les données partagées
 app.post('/api/shared-data', (req, res) => {
   try {
-    // Récupérer les nouvelles données depuis le corps de la requête
     console.log(req.body);
     const newData = req.body;
 console.log("ok")
 console.log(newData)
 
-    // Charger les données actuelles en lisant le fichier
     const filePath = path.join(__dirname, '../../shared-data.json');
     fs.readFile(filePath, 'utf8', (readErr, data) => {
       if (readErr) {
@@ -65,13 +62,10 @@ console.log(newData)
         return;
       }
 
-      // Parse the existing data
       const sharedData = JSON.parse(data);
 
-      // Mettre à jour les données
       Object.assign(sharedData, newData);
 
-      // Écrire les données mises à jour dans le fichier JSON
       fs.writeFile(filePath, JSON.stringify(sharedData, null, 2), 'utf8', (writeErr) => {
         if (writeErr) {
           console.error('Erreur lors de l\'écriture des données partagées :', writeErr);

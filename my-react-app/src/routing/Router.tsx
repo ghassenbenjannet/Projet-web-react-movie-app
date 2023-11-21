@@ -5,7 +5,7 @@ import { MovieList } from '../components/organisms/MovieList/MovieList';
 import { ErrorPage } from './ErrorPage';
 import { MovieDetailsPage } from '../components/organisms/MovieDetails/MovieDetails';
 import { FavoritesMovies } from '../components/organisms/MovieList/MovieFavoris';
-import { checkMaintenanceStatus } from '../infrastructure/services/useBackend'; // Importez le service
+import { checkMaintenanceStatus } from '../infrastructure/services/useBackend';
 
 export const Router: React.FC = () => {
   const [maintenance, setMaintenance] = useState<boolean>(false);
