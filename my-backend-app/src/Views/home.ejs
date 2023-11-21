@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+
+  <nav class="bg-blue-500 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-white text-2xl font-bold">Hello, Admin!</h1>
+      <a href="/login" class="text-white hover:underline">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container mx-auto p-8">
+    <div class="mt-4">
+      <button id="toggleMaintenanceButton" onclick="toggleMaintenance()"
+              class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+        Mode Maintenance: <span id="maintenanceStatus" class="font-semibold"></span>
+      </button>
+    </div>  </div>
+  
+
+  <script>
+    async function initializePage() {
+      try {
+        const response = await fetch(`http://localhost:3000/api/shared-data?${Math.random()}`);
+        const data = await response.json();
+     
+        const maintenanceStatusElement = document.getElementById('maintenanceStatus');
+        maintenanceStatusElement.textContent = data.maintenance ? 'Activé' : 'Désactivé';
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données du serveur :', error);
+        alert('Erreur lors de la récupération des données du serveur.');
+      }
+    }
+
+    async function toggleMaintenance() {
+      try {
+        const response = await fetch('http://localhost:3000/api/toggle-maintenance', { method: 'POST' });
+        const data = await response.json();
+        const maintenanceStatusElement = document.getElementById('maintenanceStatus');
+        maintenanceStatusElement.textContent = data.maintenance ? 'Activé' : 'Désactivé';
+        console.log('État de maintenance actuel :', data.maintenance);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données du serveur :', error);
+        alert('Erreur lors de la récupération des données du serveur.');
+      }
+    }
+  
+    async function getMaintenanceStatus() {
+      try {
+        const response = await fetch('http://localhost:3000/api/shared-data');
+        const data = await response.json();
+
+        const newMaintenanceStatus = !data.maintenance;
+
+        const updateResponse = await fetch(`http://localhost:3000/api/shared-data?${Math.random()}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ maintenance: newMaintenanceStatus }),
+});
+
+
+        const updateData = await updateResponse.json();
+
+        if (updateData.success) {
+          const maintenanceStatusElement = document.getElementById('maintenanceStatus');
+          maintenanceStatusElement.textContent = newMaintenanceStatus ? 'Activé' : 'Désactivé';
+          console.log('Nouvel état de maintenance :', newMaintenanceStatus);
+        } else {
+          console.error('Erreur lors de la mise à jour des données du serveur :', updateData.error);
+          alert('Erreur lors de la mise à jour des données du serveur.');
+        }
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données du serveur :', error);
+        alert('Erreur lors de la récupération des données du serveur.');
+      }
+    }
+
+    window.onload = initializePage;
+  </script>
+  
+</body>
+</html>
