@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 
+
 interface CarouselProps {
   defaultSlidesToShow: number;
   slidesToShow_1024: number;
@@ -31,8 +32,9 @@ export const Carousel: React.FC<CarouselProps> = ({ defaultSlidesToShow, slidesT
         },
       },
     ],
+    
   };
-
+  console.log('Carousel Settings:', settings);
   return <Slider {...settings}>{children}</Slider>;
 };
 
