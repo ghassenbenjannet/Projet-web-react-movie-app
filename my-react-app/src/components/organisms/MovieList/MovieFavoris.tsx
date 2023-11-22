@@ -50,7 +50,7 @@ const Movies: React.FC<{ movies: Movie[] }> = ({ movies }) => {
           key={movie.id}
           id={movie.id}
           title={movie.title}
-          imageSrc={`${POSTER_BASE_URL}${movie.poster_path}`}
+          poster_path={`${POSTER_BASE_URL}${movie.poster_path}`}
         />
       ))}
     </div>
