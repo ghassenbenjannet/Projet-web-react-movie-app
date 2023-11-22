@@ -1,10 +1,15 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 export const BtnBack: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1);   };
   return (
-    <a
+    <button
       className="self-start transition ease-in-out  flex gap-1 items-center hover:-translate-x-2"
-      href="/"
+      onClick={handleGoBack}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +26,7 @@ export const BtnBack: React.FC = () => {
         <polyline points="12 19 5 12 12 5"></polyline>
       </svg>
       Back
-    </a>
+    </button>
   );
 };
 

@@ -8,10 +8,10 @@ interface NavBarProps {
 
 export const NavBar: React.FC<NavBarProps> = ({ onChangeSearch }) => {
   return (
-    <div className='flex flex-wrap gap-2 sm:justify-between'>
+    <div className='flex flex-wrap gap-2 sm:justify-between dark:text-white'>
       <p className='text-2xl sm:text-4xl'>🎬🍿 Movie library</p>
       <SearchBar onSearch={onChangeSearch} />
-      <Link to="/favorites" className="self-start transition ease-in-out flex gap-1 items-center hover:-translate-x-2">
+      <Link to="/favorites" className="self-start border p-1 rounded transition ease-in-out flex gap-1 items-center hover:-translate-x-2">
         Favoris
       </Link>
     </div>

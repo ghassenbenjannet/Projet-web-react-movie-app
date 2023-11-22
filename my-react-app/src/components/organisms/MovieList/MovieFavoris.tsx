@@ -26,6 +26,9 @@ export const FavoritesMovies: React.FC = () => {
 
   return (
     <main className='flex flex-col gap-6 min-h-screen min-w-full p-12 dark:bg-gray-800'>
+      <div className='flex flex-wrap gap-2 sm:justify-between dark:text-white'>
+      <p className='text-2xl sm:text-4xl'>🎬🍿 Movie library: Favourites</p>
+    </div>
        <div className="text-black dark:text-white">
             <BtnBack />
         </div>
