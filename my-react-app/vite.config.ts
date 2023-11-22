@@ -7,6 +7,7 @@ export default {
     include: ['react', 'react-dom'],
   },
   server:{
+    host:true,
     port: 80,
   },
 };

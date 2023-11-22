@@ -1,0 +1,22 @@
+FROM node:18-alpine as BUILD_IMAGE
+
+WORKDIR /app/my-backend-app
+
+# Copy the entire project to the working directory
+COPY . .
+
+# Copy package.json separately to take advantage of Docker cache
+COPY package.json .
+
+RUN npm install 
+
+RUN npm install ejs
+#RUN npm run build
+
+# Expose the port that your app will run on (adjust as needed)
+EXPOSE 3000
+
+
+# Specify the command to serve the production build
+CMD ["npm", "start"]
+
