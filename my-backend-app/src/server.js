@@ -19,7 +19,7 @@ app.use(session({
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'Views'));
 app.set('view engine', 'ejs');
 
 app.use(authRoutes);
@@ -81,13 +81,12 @@ console.log(newData)
   }
 });
 
+
+
+app.get('/', (req, res) => {
+  res.redirect('/login');
+});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Connected : http://localhost:${PORT}`));
 
-
-// Define a route for the root URL ("/")
-app.get('/', (req, res) => {
-  // Redirect to the /login page
-  res.redirect('/login');
-});
 
