@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { CardMovie } from '../../molecules/MovieCard/MovieCard';
 import { NavBar } from '../../molecules/NavBar/NavBar';
 import { useFetchMovieList } from '../../../infrastructure/queries/MovieListQuery';
@@ -7,14 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import { Loading } from '../../atoms/Loading/Loading';
 import { Movie } from '../../../infrastructure/models/Movie';
 import { MovieListContainer } from '../../atoms/MovieListContainer/MovieListContainer';
+import useMovieSearch from '../../../infrastructure/queries/SearchAllMovie';
 
 export const MovieList = () => {
-  useEffect(() => {
-    document.title = "Movies List";
-  }, []);
   const { movies = [], isError, isLoading } = useFetchMovieList();
-  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = React.useState<string>('');
+  const { movies: searchedMovies = [], isLoading: isSearching } = useMovieSearch({ query: searchQuery });
+  const navigate = useNavigate();
+
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
   };
@@ -24,21 +24,17 @@ export const MovieList = () => {
     return null;
   }
 
-  const filteredMovies = movies.filter((movie) =>
-    movie.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const displayMovies = searchQuery ? searchedMovies : movies;
 
   return (
     <main className='flex flex-col gap-6 min-h-screen min-w-full p-12 dark:bg-gray-800'>
       <NavBar onChangeSearch={handleSearchChange} />
       <MovieListContainer>
-        {isLoading ? <Loading /> : <Movies movies={filteredMovies} />}
+        {isLoading || isSearching ? <Loading /> : <Movies movies={displayMovies} />}
       </MovieListContainer>
     </main>
   );
 };
-
-
 
 const Movies: React.FC<{ movies: Movie[] }> = ({ movies }) => {
   return (
