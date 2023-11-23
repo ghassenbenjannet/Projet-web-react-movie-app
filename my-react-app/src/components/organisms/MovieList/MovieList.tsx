@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardMovie } from '../../molecules/MovieCard/MovieCard';
 import { NavBar } from '../../molecules/NavBar/NavBar';
-import { useFetchMovieListRule } from '../../../infrastructure/queries/MovieListQuery';
+import { useFetchMovieList } from '../../../infrastructure/queries/MovieListQuery';
 import { POSTER_BASE_URL } from '../../../infrastructure/config/Endpoints';
 import { useNavigate } from 'react-router-dom';
 import { Loading } from '../../atoms/Loading/Loading';
@@ -9,7 +9,7 @@ import { Movie } from '../../../infrastructure/models/Movie';
 import { MovieListContainer } from '../../atoms/MovieListContainer/MovieListContainer';
 
 export const MovieList = () => {
-  const { movies = [], isError, isLoading } = useFetchMovieListRule();
+  const { movies = [], isError, isLoading } = useFetchMovieList();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const handleSearchChange = (query: string) => {

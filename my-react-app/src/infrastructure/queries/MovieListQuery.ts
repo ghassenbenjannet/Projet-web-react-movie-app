@@ -3,7 +3,7 @@ import axios from 'axios';
 import { tmdb_api_acces } from '../config/TMDBConfig';
 import { MOVIES_ENDPOINT } from '../config/Endpoints';
 
-export const useFetchMovieListRule = () => {
+export const useFetchMovieList = () => {
   const { apiKey } = tmdb_api_acces;
 
   const { data, error, isLoading } = useQuery('movies', async () => {
