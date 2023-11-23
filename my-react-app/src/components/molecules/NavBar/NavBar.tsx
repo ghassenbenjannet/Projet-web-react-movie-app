@@ -12,7 +12,7 @@ export const NavBar: React.FC<NavBarProps> = ({ onChangeSearch }) => {
       <p className='text-2xl sm:text-4xl'>🎬🍿 Movie library</p>
       <SearchBar onSearch={onChangeSearch} />
       <Link to="/favorites" className="self-start border p-1 rounded transition ease-in-out flex gap-1 items-center hover:-translate-x-2">
-        Favoris
+        Favourites
       </Link>
     </div>
   );
