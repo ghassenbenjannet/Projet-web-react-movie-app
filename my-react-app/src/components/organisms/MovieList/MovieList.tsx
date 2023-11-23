@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CardMovie } from '../../molecules/MovieCard/MovieCard';
 import { NavBar } from '../../molecules/NavBar/NavBar';
 import { useFetchMovieList } from '../../../infrastructure/queries/MovieListQuery';
@@ -9,6 +9,9 @@ import { Movie } from '../../../infrastructure/models/Movie';
 import { MovieListContainer } from '../../atoms/MovieListContainer/MovieListContainer';
 
 export const MovieList = () => {
+  useEffect(() => {
+    document.title = "Movies List";
+  }, []);
   const { movies = [], isError, isLoading } = useFetchMovieList();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = React.useState<string>('');

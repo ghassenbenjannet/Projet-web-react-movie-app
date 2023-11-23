@@ -34,7 +34,6 @@ export const Carousel: React.FC<CarouselProps> = ({ defaultSlidesToShow, slidesT
     ],
     
   };
-  console.log('Carousel Settings:', settings);
   return <Slider {...settings}>{children}</Slider>;
 };
 

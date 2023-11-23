@@ -8,6 +8,9 @@ import { fetchMovieById } from "../../../infrastructure/queries/FetchMovieByIdQu
 import BtnBack from "../../atoms/Button/Back_btn";
 
 export const FavoritesMovies: React.FC = () => {
+  useEffect(() => {
+    document.title = "Favourites Movies";
+  }, []);
   const { favorites } = useFavorites();
   const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
 

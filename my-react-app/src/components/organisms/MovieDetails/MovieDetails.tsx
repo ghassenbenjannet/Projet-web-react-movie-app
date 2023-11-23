@@ -21,7 +21,6 @@ export const MovieDetailsPage: React.FC = () => {
   const { data: images, error: imagesError, isLoading: imagesLoading } = useFetchMovieImagesQuery(Number(id));
   const { addToFavorites, removeFromFavorites, favorites } = useFavorites();
   const [isFavorited, setIsFavorited] = React.useState(false);
-
   React.useEffect(() => {
     setIsFavorited(favorites.includes(Number(id)));
   }, [favorites, Number(id)]);

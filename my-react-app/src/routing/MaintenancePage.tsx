@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export const MaintenancePage: React.FC = () => {
+  useEffect(() => {
+    document.title = "Maintenance-Page";
+  }, []);
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 className="mb-4 text-6xl font-semibold text-red-500">Oops! Maintenance</h1>

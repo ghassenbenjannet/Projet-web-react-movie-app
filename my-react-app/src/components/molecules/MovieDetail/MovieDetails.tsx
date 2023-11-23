@@ -12,6 +12,9 @@ interface MovieDetailProps {
 const MovieDetails: React.FC<MovieDetailProps> = ({ movieDetail }) => {
   const releaseDate = new Date(movieDetail.release_date);
   const formattedDate =format(releaseDate, 'MMM dd, yyyy');
+  React.useEffect(() => {
+    document.title = "Movie: "+ movieDetail.original_title;
+  }, []);
 
     return (
     <div className="flex flex-col items-center flex-wrap gap-4 justify-center sm:flex-row sm:items-end">
