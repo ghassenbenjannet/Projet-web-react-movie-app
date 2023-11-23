@@ -29,7 +29,7 @@ export const MovieList = () => {
   const displayMovies = searchQuery ? searchedMovies : movies;
 
   return (
-    <main className='flex flex-col gap-6 min-h-screen min-w-full p-12 dark:bg-gray-800'>
+    <main className='bg-gray-200 flex flex-col gap-6 min-h-screen min-w-full p-12  dark:bg-gray-800'>
       <NavBar onChangeSearch={handleSearchChange} />
       <MovieListContainer>
         {isLoading || isSearching ? <Loading /> : <Movies movies={displayMovies} />}
