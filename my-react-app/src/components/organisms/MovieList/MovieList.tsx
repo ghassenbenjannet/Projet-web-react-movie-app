@@ -14,7 +14,9 @@ export const MovieList = () => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const { movies: searchedMovies = [], isLoading: isSearching } = useMovieSearch({ query: searchQuery });
   const navigate = useNavigate();
-
+  React.useEffect(() => {
+    document.title = "Movies List";
+  }, []);
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
   };
